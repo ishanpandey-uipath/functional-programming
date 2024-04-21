@@ -134,3 +134,24 @@ let usr = getUser(users, "James");
 let usr1 = updateScore(usr, 50);
 let usr2 = updateTries(usr1, 120);
 storeUser(users, usr2);
+
+/*
+Arrays in JS have find() method - from functional perspective, it will be more declarative
+
+- we retreive the object we are looking for
+- takes in a function to find the element, returns true if it finds the element
+- then find will pickup the element and return that back 
+*/
+
+var getUser1 = function(arr, name) {
+    // for(let i=0; i<arr.length; i++) {
+    //     if(arr[i].name.toLowerCase() === name.toLowerCase()) {
+    //         return arr[i]; // returns an object / user
+    //     }
+    // }
+    // return null;
+    
+    // obj will contain user as it goes through users
+    let targetObj = arr.find(obj => obj.name.toLowerCase() === name.toLowerCase());
+    return targetObj;
+};

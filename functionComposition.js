@@ -1,7 +1,7 @@
 /*
-First class functions - https://youtu.be/1ieC6JZmF5w?feature=shared
-means something is just a value
-A first class function can go anywhere that any other value can go
+    First class functions - https://youtu.be/1ieC6JZmF5w?feature=shared
+    means something is just a value
+    A first class function can go anywhere that any other value can go
 */
 
 // Number can be stored in an array, so can a function
@@ -39,3 +39,27 @@ var returnFunct = function() {
 var newFunct = returnFunct();
 newFunct();
 
+/*
+    Higher Order Functions: https://youtu.be/O9lMynNdka4?feature=shared
+    - are functions that operate on other functions by either taking them as arguments or returning them.
+    - first class functions make it possible to create higher order functions.
+*/
+
+let things = ['Elephant', 'truck', 'Ball', 'batting'];
+things.sort(function(a, b){
+    let x = a.toLowerCase(), y = b.toLowerCase();
+    if(x < y) {
+        return -1; // first argument should come before second argumemt
+    } else if(x === y) {
+        return 0; 
+    } else {
+        return 1; // second argumemt should come before first argument
+    }
+
+});
+
+/*
+    Closures:
+    - related to scope
+
+*/

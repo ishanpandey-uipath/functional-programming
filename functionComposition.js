@@ -60,6 +60,75 @@ things.sort(function(a, b){
 
 /*
     Closures:
-    - related to scope
+    - closely related to scope.
+    - JS uses function scope - functions determine scope of items present in the function.
 
+    - local variables of a function, kept-alive after a function has returned.
+    - OR when a function is able to remember and access its lexical scope even when that function is executing outside its lexical scope.
+    - OR a closure function is a function having access to parent scope, even after parent function is closed.
 */
+
+var funct1 = function funct1(){
+    var a = 2, b = 3;
+    
+    var funct2 = function funct2() {
+        console.log(a+b);
+    };
+    funct2();
+};
+
+// var funct3 = function funct3(){
+//     console.log(a+b);
+// };
+
+funct1();
+// funct3();
+
+/*
+    Callbacks - are functions that execute outside of scope.
+*/
+var funct4 = function funct4(){
+    var a = 2, b = 3;
+    
+    var funct5 = function funct5() {
+        console.log(a+b);
+    };
+    setTimeout(funct5, 1000); // funct4 closes, still then funct5 retains its scope
+};
+
+funct4();
+
+/*
+    Immediately invoked function expression
+*/
+(function counter() {
+    var item = 0;
+
+    var print = function print() {
+        console.log(item);
+    };
+
+    var incrementBy100 = function() {
+        item = item+100;
+        print();
+    };
+
+    setTimeout(incrementBy100, 1000);
+}());
+
+/*
+    Storing values returned from IIFE
+*/
+var APP = (function iife() {
+    var multiplyBy2 = function multiplyBy2(num) {
+        num = num*2;
+        console.log(num);
+    };
+
+    return {
+        sum: 15,
+        func: multiplyBy2
+    };
+}());
+
+APP.func(APP.sum);

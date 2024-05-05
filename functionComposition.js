@@ -132,3 +132,14 @@ var APP = (function iife() {
 }());
 
 APP.func(APP.sum);
+
+/*
+    Function Composition:
+    - combining some functions to make a new function.
+
+    Functions can be looked at two ways - procedures or functions.
+    * Procedure - normally does more than one thing, requires multiple statements to do that.
+    * Functions (FP) - have an input, return a value, simplied to a single task.
+    
+    
+*/

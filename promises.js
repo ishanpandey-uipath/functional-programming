@@ -48,5 +48,62 @@ Common mistake while promise chaining:
 - if you use arrow functions, you wont need return statement
 */
 
+const cart = ["shirt", "pant", "shoes"];
+const promise = createOrder(cart); // consuming promise
+promise.then(function(orderId) {
+    console.log(promise);
+    return orderId;
+})
+.then(function(orderId) {
+    return proceedToPayment(orderId); // returns promise
+    // avoid promise chain and handle it in next chain
+})
+.then(function(paymentInfo) {
+    console.log(paymentInfo);
+})
+.catch(function(err) {
+    console.log("invoking failiure callback" + err.message);
+})
+.then(function() {
+    console.log("calling it anyways");
+});
+// handling reject case from promise
+// catch will handle any error in the chain and failure callback attached using catch function
+// any .then after .catch will definitely be called
+
 
 // PART 2: CREATING PROMISES: INCREASE TRUST FOR OTHER DEVS FOR THEM TO CONSUME YOUR PROMISES
+function createOrder(cart) {
+    const pr = new Promise(function(resolve, reject){
+        // logic of creating order
+
+        // validate cart
+        // create order
+        // return order id
+        if(!validateCart(cart)) {
+            const err = new Error("cart is not valid");
+            reject(err);
+        }
+
+        const orderId = 123;
+        if(orderId) {
+            setTimeout(function() {
+                resolve(orderId);
+            }, 5000);
+        }
+    });
+
+    return pr;
+}
+
+function validateCart(cart) {
+    return true;
+    // return false;
+}
+
+function proceedToPayment(orderId) {
+    // returns a promise
+    return new Promise(function(resolve, reject){
+        resolve("payment successful");
+    });
+}
